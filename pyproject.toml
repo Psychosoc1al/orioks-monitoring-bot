@@ -3,17 +3,19 @@ name = "ORIOKS Monitoring Bot"
 description = "Bot for tracking changes in the educational electronic environment (ORIOKS) National Research University of Electronic Technology MIET orioks.miet.ru on the Telegram platform."
 license = "MIT"
 authors = [
-    "Kirill Kulikov <to+git@adoge.ru>",
-    "Polina Kleiner <polina.kleiner@gmail.com>",
-    "whom <m0rtydisg@gmail.com>",
-    "Alexey Voronin <8183700@edu.miet.ru>",
+    {name = "Kirill Kulikov", email = "to+git@adoge.ru"},
+    {name = "Polina Kleiner", email = "polina.kleiner@gmail.com"},
+    {name = "whom", email = "m0rtydisg@gmail.com"},
+    {name = "Alexey Voronin", email = "8183700@edu.miet.ru"},
+    {name = "Anton Petrov", email = "tohichpetrov@gmail.com"},
 ]
 maintainers = [
-    "Kirill Kulikov <to+git@adoge.ru>",
+    {name = "Kirill Kulikov", email = "to+git@adoge.ru"},
 ]
 repository = "https://github.com/orioks-monitoring/bot"
 homepage = "orioks-monitoring.github.io/bot/"
 readme = "README.md"
+requires-python = "==3.10"
 
 
 [tool.black]
@@ -21,3 +23,105 @@ line-length = 79
 skip-string-normalization = true
 target-version = ['py310']
 include = '\.pyi?$'
+
+[tool.ruff]
+line-length = 79
+exclude = ["**/*.py?(i)", "app/migrations/versions"]
+
+[tool.ruff.lint]
+select = ['ALL']
+ignore = [
+    "Q000", # preserve string quotes
+    "D100", # don't require docstrings
+    "D101", # don't require docstrings
+    "D102", # don't require docstrings
+    "D103", # don't require docstrings
+    "D104", # don't require docstrings
+    "D105", # don't require docstrings
+    "D107", # don't require docstrings
+    "D203", # don't require empty line before docstrings
+    "BLE001", # allow "catch Exception"
+    "S301", # allow pickle deserialization
+    "RUF001", # allow ambiguous cyrillic/latin letters 
+    "RUF003", # allow ambiguous cyrillic/latin letters 
+    "TRY003", # allow "long" error messages 
+    "EM101", # allow strings in error messages 
+    "EM102", # allow f-strings in error messages 
+    "FIX", # allow TODOs
+    "TD", # allow TODOs
+    "ERA001", # allow commented code
+    "DTZ005", # allow datetime without timezone
+
+    "N818", # DELETE
+    "D200", # DELETE
+    "SIM105", # DELETE
+    "UP006", # DELETE
+    "SIM910", # DELETE
+    "UP035", # DELETE
+    "N816", # DELETE
+    "TRY300", # DELETE
+    "RUF013", # DELETE
+    "PTH103", # DELETE
+    "UP007", # DELETE
+    "PTH107", # DELETE
+    "PLW2901", # DELETE
+    "E712", # DELETE
+    "SIM103", # DELETE
+    "PLC0414", # DELETE
+    "UP015", # DELETE
+    "RET503", # DELETE
+    "FBT002", # DELETE
+    "ASYNC230", # DELETE
+    "TRY203", # DELETE
+    "PLR0402", # DELETE
+    "SIM115", # DELETE
+    "ANN205", # DELETE
+    "FBT001", # DELETE
+    "ARG004", # DELETE
+    "D212", # DELETE
+    "D205", # DELETE
+    "D213", # DELETE
+    "ANN003", # DELETE
+    "ANN002", # DELETE
+    "ARG002", # DELETE
+    "RSE102", # DELETE
+    "F401", # DELETE
+    "W291", # DELETE
+    "ANN206", # DELETE
+    "TID252", # DELETE
+    "E402", # DELETE
+    "E402", # DELETE
+    "N999", # DELETE
+    "SIM118", # DELETE
+    "RUF022", # DELETE
+    "C901", # DELETE
+    "B905", # DELETE
+    "RET504", # DELETE
+    "ANN202", # DELETE
+    "D415", # DELETE
+    "D400", # DELETE
+    "TRY002", # DELETE
+    "PTH123", # DELETE
+    "S311", # DELETE
+    "TRY400", # DELETE
+    "C401", # DELETE
+    "INP001", # DELETE
+    "ANN201", # DELETE
+    "ANN001", # DELETE
+    "RUF006", # DELETE
+    "C408", # DELETE
+    "PLR2004", # DELETE
+    "TRY201", # DELETE
+    "RET501", # DELETE
+    "PTH100", # DELETE
+    "PTH118", # DELETE
+    "PTH120", # DELETE
+    "RUF200", # DELETE
+    "RUF012", # DELETE
+    "COM812", # DELETE
+    "ANN204", # DELETE
+    "E501", # DELETE
+]
+
+[tool.ruff.format]
+quote-style = "preserve"
