@@ -56,7 +56,7 @@ class CommonHelper:
             return False
 
     @staticmethod
-    def safe_delete(path: Union[str, pathlib.Path]) -> None:
+    def safe_delete(path: str | pathlib.Path) -> None:
         with contextlib.suppress(FileNotFoundError):
             os.remove(path)
 

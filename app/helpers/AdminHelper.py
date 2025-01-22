@@ -1,5 +1,3 @@
-from typing import Dict
-
 from app.models import session
 from app.models.admins import AdminStatistics
 from app.models.users import UserNotifySettings, UserStatus
@@ -34,7 +32,7 @@ class AdminHelper:
         return users_with_accepted_agreement.count()
 
     @staticmethod
-    def get_count_users_statistics() -> Dict:
+    def get_count_users_statistics() -> dict:
         users_agreement_accepted = AdminHelper.get_user_status_statistics(
             agreement_accepted=True
         )

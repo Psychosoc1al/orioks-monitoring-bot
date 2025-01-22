@@ -1,5 +1,4 @@
 from abc import abstractmethod
-from typing import Type
 
 from app.models import BaseModel
 
@@ -7,7 +6,7 @@ from app.models import BaseModel
 class AbstractFixture:
     @property
     @abstractmethod
-    def model(self) -> Type[BaseModel]:
+    def model(self) -> type[BaseModel]:
         raise NotImplementedError
 
     @property

@@ -1,5 +1,3 @@
-from typing import Type
-
 from aiogram import Dispatcher
 
 from config import config
@@ -105,7 +103,7 @@ def register_handlers(dispatcher: Dispatcher) -> None:
 
 def _register_message_handler(
     dispatcher_: Dispatcher,
-    handler_class: Type[AbstractCommandHandler],
+    handler_class: type[AbstractCommandHandler],
     text: list = None,
     commands: list = None,
     state=None,

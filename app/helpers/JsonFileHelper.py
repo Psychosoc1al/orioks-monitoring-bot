@@ -6,7 +6,7 @@ import aiofiles
 
 class JsonFileHelper:
     @staticmethod
-    async def save(data: Union[list, dict], filename: str) -> None:
+    async def save(data: list | dict, filename: str) -> None:
         async with aiofiles.open(filename, mode='w', encoding='utf-8') as f:
             await f.write(json.dumps(data, indent=2, ensure_ascii=False))
 
