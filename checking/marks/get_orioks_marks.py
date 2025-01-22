@@ -79,7 +79,7 @@ def _iterate_forang_version_with_list(forang: dict) -> list:
 
 def _iterate_forang_version_with_keys(forang: dict) -> list:
     json_to_save = []
-    for discipline_index in forang['dises'].keys():
+    for discipline_index in forang['dises']:
         discipline_ball = DisciplineBall()
         one_discipline = []
         for mark in forang['dises'][discipline_index]['segments'][0]['allKms']:
