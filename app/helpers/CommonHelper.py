@@ -1,3 +1,4 @@
+import contextlib
 import os
 import pathlib
 import traceback
@@ -56,10 +57,8 @@ class CommonHelper:
 
     @staticmethod
     def safe_delete(path: Union[str, pathlib.Path]) -> None:
-        try:
+        with contextlib.suppress(FileNotFoundError):
             os.remove(path)
-        except FileNotFoundError:
-            pass
 
     @staticmethod
     def print_traceback(exception: Exception) -> None:

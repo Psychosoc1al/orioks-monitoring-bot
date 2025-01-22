@@ -56,7 +56,6 @@ ignore = [
     "TD", # allow TODOs
     "TRY003", # allow "long" error messages 
 
-    "SIM105", # DELETE
     "UP006", # DELETE
     "SIM910", # DELETE
     "UP035", # DELETE
