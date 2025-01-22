@@ -54,6 +54,7 @@ ignore = [
     "RUF003", # allow ambiguous cyrillic/latin letters 
     "S301", # allow pickle deserialization
     "TD", # allow TODOs
+    "TRY002", # allow raising bare `Exception`s
     "TRY003", # allow "long" error messages 
 
     "RUF013", # DELETE
@@ -66,7 +67,6 @@ ignore = [
     "RET503", # DELETE
     "FBT002", # DELETE
     "ASYNC230", # DELETE
-    "TRY203", # DELETE
     "PLR0402", # DELETE
     "ANN205", # DELETE
     "FBT001", # DELETE
@@ -86,7 +86,6 @@ ignore = [
     "B905", # DELETE
     "RET504", # DELETE
     "ANN202", # DELETE
-    "TRY002", # DELETE
     "PTH123", # DELETE
     "S311", # DELETE
     "TRY400", # DELETE
