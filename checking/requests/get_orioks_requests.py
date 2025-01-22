@@ -6,7 +6,7 @@ import aiogram.utils.markdown as md
 from aiohttp import ClientResponseError
 from bs4 import BeautifulSoup
 
-from app.exceptions import FileCompareException, OrioksParseDataException
+from app.exceptions import FileCompareError, OrioksParseDataError
 from app.helpers import (
     ClientSessionHelper,
     CommonHelper,
@@ -23,7 +23,7 @@ def _orioks_parse_requests(raw_html: str, section: str) -> dict:
         new_messages_td_list_index = 6
     bs_content = BeautifulSoup(raw_html, "html.parser")
     if bs_content.select_one('.table.table-condensed.table-thread') is None:
-        raise OrioksParseDataException
+        raise OrioksParseDataError
     table_raw = bs_content.select(
         '.table.table-condensed.table-thread tr:not(:first-child)'
     )
@@ -120,7 +120,7 @@ def compare(old_dict: dict, new_dict: dict) -> list:
         try:
             _ = new_dict[thread_id_old]
         except KeyError as exception:
-            raise FileCompareException from exception
+            raise FileCompareError from exception
         if (
             old_dict[thread_id_old]['status']
             != new_dict[thread_id_old]['status']
@@ -166,7 +166,7 @@ async def _user_requests_check_with_subsection(
         requests_dict = await get_orioks_requests(
             section=section, session=session
         )
-    except OrioksParseDataException as exception:
+    except OrioksParseDataError as exception:
         logging.info(
             '(REQUESTS) [%s] exception: utils.exceptions.OrioksCantParseData',
             user_telegram_id,
@@ -179,7 +179,7 @@ async def _user_requests_check_with_subsection(
                 '(REQUESTS) [%s] exception: aiohttp.ClientResponseError status in [400, 500). Raising OrioksCantParseData',
                 user_telegram_id,
             )
-            raise OrioksParseDataException from exception
+            raise OrioksParseDataError from exception
         raise exception
 
     if student_json_file not in os.listdir(
@@ -194,7 +194,7 @@ async def _user_requests_check_with_subsection(
     old_dict = JsonFileHelper.convert_dict_keys_to_int(_old_json)
     try:
         diffs = compare(old_dict=old_dict, new_dict=requests_dict)
-    except FileCompareException as exception:
+    except FileCompareError as exception:
         await JsonFileHelper.save(
             data=requests_dict, filename=path_users_to_file
         )

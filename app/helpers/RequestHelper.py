@@ -4,7 +4,7 @@ import logging
 from aiohttp import ClientResponse
 from aiohttp.typedefs import StrOrURL
 
-from app.exceptions import ClientResponseErrorParamsException
+from app.exceptions import ClientResponseErrorParamsError
 from app.helpers import AdminHelper, ClientSessionHelper
 from config import config
 
@@ -17,7 +17,7 @@ class RequestHelper:
         raw_html: str | None = None,
     ) -> None:
         if response.status >= 400:
-            raise ClientResponseErrorParamsException(
+            raise ClientResponseErrorParamsError(
                 response.request_info,
                 response.history,
                 user_telegram_id=user_telegram_id,

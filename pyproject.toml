@@ -52,7 +52,6 @@ ignore = [
     "ERA001", # allow commented code
     "DTZ005", # allow datetime without timezone
 
-    "N818", # DELETE
     "D200", # DELETE
     "SIM105", # DELETE
     "UP006", # DELETE

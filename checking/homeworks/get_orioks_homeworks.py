@@ -6,7 +6,7 @@ import aiogram.utils.markdown as md
 from aiohttp import ClientResponseError
 from bs4 import BeautifulSoup
 
-from app.exceptions import FileCompareException, OrioksParseDataException
+from app.exceptions import FileCompareError, OrioksParseDataError
 from app.helpers import (
     ClientSessionHelper,
     CommonHelper,
@@ -20,7 +20,7 @@ from config import config
 def _orioks_parse_homeworks(raw_html: str) -> dict:
     bs_content = BeautifulSoup(raw_html, "html.parser")
     if bs_content.select_one('.table.table-condensed.table-thread') is None:
-        raise OrioksParseDataException
+        raise OrioksParseDataError
     table_raw = bs_content.select(
         '.table.table-condensed.table-thread tr:not(:first-child)'
     )
@@ -113,7 +113,7 @@ def compare(old_dict: dict, new_dict: dict) -> list:
         try:
             _ = new_dict[thread_id_old]
         except KeyError as exception:
-            raise FileCompareException from exception
+            raise FileCompareError from exception
 
         if (
             old_dict[thread_id_old]['status']
@@ -157,7 +157,7 @@ async def user_homeworks_check(
     )
     try:
         homeworks_dict = await get_orioks_homeworks(session=session)
-    except OrioksParseDataException as exception:
+    except OrioksParseDataError as exception:
         logging.info(
             '(HOMEWORKS) [%s] exception: utils.exceptions.OrioksCantParseData',
             user_telegram_id,
@@ -170,7 +170,7 @@ async def user_homeworks_check(
                 '(HOMEWORKS) [%s] exception: aiohttp.ClientResponseError status in [400, 500). Raising OrioksCantParseData',
                 user_telegram_id,
             )
-            raise OrioksParseDataException from exception
+            raise OrioksParseDataError from exception
         raise exception
     if student_json_file not in os.listdir(
         os.path.dirname(path_users_to_file)
@@ -184,7 +184,7 @@ async def user_homeworks_check(
     old_dict = JsonFileHelper.convert_dict_keys_to_int(_old_json)
     try:
         diffs = compare(old_dict=old_dict, new_dict=homeworks_dict)
-    except FileCompareException as exception:
+    except FileCompareError as exception:
         await JsonFileHelper.save(
             data=homeworks_dict, filename=path_users_to_file
         )

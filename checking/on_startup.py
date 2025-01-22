@@ -8,9 +8,9 @@ from http.cookies import SimpleCookie
 import aioschedule
 
 from app.exceptions import (
-    CheckBaseException,
-    ClientResponseErrorParamsException,
-    OrioksParseDataException,
+    CheckBaseError,
+    ClientResponseErrorParamsError,
+    OrioksParseDataError,
 )
 from app.helpers import (
     ClientResponseErrorParamsExceptionHelper,
@@ -102,7 +102,7 @@ async def make_one_user_check(user_telegram_id: int) -> None:
                 await user_requests_check(
                     user_telegram_id=user_telegram_id, session=session
                 )
-        except CheckBaseException:
+        except CheckBaseError:
             await UserHelper.increment_failed_request_count(user_telegram_id)
         else:
             UserHelper.reset_failed_request_count(user_telegram_id)
@@ -137,7 +137,7 @@ async def make_all_users_news_check(tries_counter: int = 0) -> list:
             current_news = await get_current_new_info(
                 user_telegram_id=picked_user_to_check_news, session=session
             )
-    except OrioksParseDataException:
+    except OrioksParseDataError:
         await UserHelper.increment_failed_request_count(
             picked_user_to_check_news
         )
@@ -171,7 +171,7 @@ async def run_requests(tasks: list) -> None:
         await asyncio.gather(*tasks)
     except asyncio.TimeoutError:
         logging.error('Сервер ОРИОКС не отвечает')
-    except ClientResponseErrorParamsException as exception:
+    except ClientResponseErrorParamsError as exception:
         if exception.status == 504:
             logging.error(
                 'Вероятно, на сервере ОРИОКС проводятся технические работы: %s',

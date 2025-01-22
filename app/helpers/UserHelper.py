@@ -1,4 +1,4 @@
-from app.exceptions import DatabaseException
+from app.exceptions import DatabaseError
 from app.models.users import UserNotifySettings, UserStatus
 
 
@@ -7,7 +7,7 @@ class UserHelper:
     def __get_user_by_telegram_id(user_telegram_id: int) -> UserStatus:
         user = UserStatus.find_one(user_telegram_id=user_telegram_id)
         if user is None:
-            raise DatabaseException(
+            raise DatabaseError(
                 f'User with telegram id {user_telegram_id} not found in database'
             )
 
@@ -21,7 +21,7 @@ class UserHelper:
             user_telegram_id=user_telegram_id
         )
         if user_notify_settings is None:
-            raise DatabaseException(
+            raise DatabaseError(
                 f'Settings of user with telegram id {user_telegram_id} not found in database'
             )
 
@@ -106,7 +106,7 @@ class UserHelper:
             user_telegram_id=user_telegram_id
         )
         if getattr(user_settings, setting_name) is None:
-            raise DatabaseException(
+            raise DatabaseError(
                 f'Setting with name {setting_name} for user with id {user_telegram_id} not found'
             )
 

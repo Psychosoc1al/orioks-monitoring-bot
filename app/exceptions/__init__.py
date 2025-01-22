@@ -1,19 +1,19 @@
-from .CheckBaseException import CheckBaseException
-from .ClientResponseErrorParamsException import (
-    ClientResponseErrorParamsException,
+from .CheckBaseError import CheckBaseError
+from .ClientResponseErrorParamsError import (
+    ClientResponseErrorParamsError,
 )
-from .DatabaseException import DatabaseException
-from .FileCompareException import FileCompareException
-from .OrioksInvalidLoginCredentialsException import (
-    OrioksInvalidLoginCredentialsException,
+from .DatabaseError import DatabaseError
+from .FileCompareError import FileCompareError
+from .OrioksInvalidLoginCredentialsError import (
+    OrioksInvalidLoginCredentialsError,
 )
-from .OrioksParseDataException import OrioksParseDataException
+from .OrioksParseDataError import OrioksParseDataError
 
 __all__ = [
-    'OrioksInvalidLoginCredentialsException',
-    'OrioksParseDataException',
-    'FileCompareException',
-    'DatabaseException',
-    'CheckBaseException',
-    'ClientResponseErrorParamsException',
+    'OrioksInvalidLoginCredentialsError',
+    'OrioksParseDataError',
+    'FileCompareError',
+    'DatabaseError',
+    'CheckBaseError',
+    'ClientResponseErrorParamsError',
 ]

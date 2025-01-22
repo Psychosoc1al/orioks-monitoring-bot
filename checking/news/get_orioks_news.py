@@ -7,7 +7,7 @@ import aiogram.utils.markdown as md
 from aiohttp import ClientResponseError
 from bs4 import BeautifulSoup
 
-from app.exceptions import OrioksParseDataException
+from app.exceptions import OrioksParseDataError
 from app.helpers import (
     ClientSessionHelper,
     CommonHelper,
@@ -38,7 +38,7 @@ def _get_student_actual_news(raw_html: str) -> set[int]:
     bs_content = BeautifulSoup(raw_html, "html.parser")
     news_raw = bs_content.find(id='news')
     if news_raw is None:
-        raise OrioksParseDataException
+        raise OrioksParseDataError
     news_id = set(
         __get_int_from_line(x['href'])
         for x in news_raw.select('#news tr:not(:first-child) a')
@@ -120,7 +120,7 @@ async def get_current_new_info(
     )
     try:
         last_news_ids: ActualNews = await get_orioks_news(session=session)
-    except OrioksParseDataException as exception:
+    except OrioksParseDataError as exception:
         logging.info(
             '(NEWS) [%s] exception: utils.exceptions.OrioksCantParseData',
             user_telegram_id,
@@ -133,7 +133,7 @@ async def get_current_new_info(
                 '(NEWS) [%s] exception: aiohttp.ClientResponseError status in [400, 500). Raising OrioksCantParseData',
                 user_telegram_id,
             )
-            raise OrioksParseDataException from exception
+            raise OrioksParseDataError from exception
         raise exception
 
     return last_news_ids

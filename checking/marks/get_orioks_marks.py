@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from aiohttp import ClientResponseError
 from bs4 import BeautifulSoup
 
-from app.exceptions import FileCompareException, OrioksParseDataException
+from app.exceptions import FileCompareError, OrioksParseDataError
 from app.helpers import (
     ClientSessionHelper,
     CommonHelper,
@@ -135,11 +135,11 @@ def _get_orioks_forang(raw_html: str):
     try:
         forang_raw = bs_content.find(id='forang').text
     except AttributeError as exception:
-        raise OrioksParseDataException from exception
+        raise OrioksParseDataError from exception
     forang = json.loads(forang_raw)
 
     if len(forang) == 0:
-        raise OrioksParseDataException
+        raise OrioksParseDataError
 
     try:
         json_to_save = _iterate_forang_version_with_list(forang=forang)
@@ -178,7 +178,7 @@ async def user_marks_check(
         raise FileNotFoundError(
             f'FileNotFoundError - {user_telegram_id}'
         ) from exception
-    except OrioksParseDataException as exception:
+    except OrioksParseDataError as exception:
         logging.info(
             '(MARKS) [%s] exception: utils.exceptions.OrioksCantParseData',
             user_telegram_id,
@@ -191,7 +191,7 @@ async def user_marks_check(
                 '(MARKS) [%s] exception: aiohttp.ClientResponseError status in [400, 500). Raising OrioksCantParseData',
                 user_telegram_id,
             )
-            raise OrioksParseDataException from exception
+            raise OrioksParseDataError from exception
         raise exception
 
     if student_json_file not in os.listdir(
@@ -204,7 +204,7 @@ async def user_marks_check(
     old_json = await JsonFileHelper.open(filename=path_users_to_file)
     try:
         diffs = file_compares(old_file=old_json, new_file=detailed_info)
-    except FileCompareException as exception:
+    except FileCompareError as exception:
         await JsonFileHelper.save(
             data=detailed_info, filename=path_users_to_file
         )

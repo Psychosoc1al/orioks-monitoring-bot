@@ -7,7 +7,7 @@ from datetime import datetime
 from aiohttp import ClientSession
 from bs4 import BeautifulSoup
 
-from app.exceptions import OrioksInvalidLoginCredentialsException
+from app.exceptions import OrioksInvalidLoginCredentialsError
 from app.helpers import (
     CommonHelper,
     UserHelper,
@@ -55,7 +55,7 @@ class OrioksHelper:
                         str(config.ORIOKS_PAGE_URLS['login']), data=login_data
                     ) as resp:
                         if str(resp.url) == config.ORIOKS_PAGE_URLS['login']:
-                            raise OrioksInvalidLoginCredentialsException
+                            raise OrioksInvalidLoginCredentialsError
                 except asyncio.TimeoutError as exception:
                     raise exception
 

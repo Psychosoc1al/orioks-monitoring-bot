@@ -5,7 +5,7 @@ from aiogram import types
 from aiogram.utils import markdown
 
 import app
-from app.exceptions import OrioksInvalidLoginCredentialsException
+from app.exceptions import OrioksInvalidLoginCredentialsError
 from app.forms import OrioksAuthForm
 from app.handlers import AbstractCommandHandler
 from app.helpers import (
@@ -65,7 +65,7 @@ class OrioksAuthInputPasswordCommandHandler(AbstractCommandHandler):
                     user_password=data['password'],
                     user_telegram_id=message.from_user.id,
                 )
-            except OrioksInvalidLoginCredentialsException:
+            except OrioksInvalidLoginCredentialsError:
                 AdminHelper.increase_failed_logins()
                 await OrioksAuthFailedMenu.show(
                     chat_id=message.chat.id,

@@ -1,13 +1,13 @@
 import secrets
 from pathlib import Path
 
-from app.exceptions import ClientResponseErrorParamsException
+from app.exceptions import ClientResponseErrorParamsError
 from app.helpers import CommonHelper, StorageHelper, TelegramMessageHelper
 
 
 class ClientResponseErrorParamsExceptionHelper:
     @staticmethod
-    async def check(exception: ClientResponseErrorParamsException) -> None:
+    async def check(exception: ClientResponseErrorParamsError) -> None:
         if exception.raw_html:
             _filename = Path(
                 f'{exception.user_telegram_id}_{secrets.token_hex(7)}.html'
