@@ -60,18 +60,18 @@ class OrioksHelper:
                     raise exception
 
                 cookies = session.cookie_jar.filter_cookies(resp.url)
-            pickle.dump(
-                cookies,
-                open(
-                    os.path.join(
-                        config.BASEDIR,
-                        'users_data',
-                        'cookies',
-                        f'{user_telegram_id}.pkl',
-                    ),
-                    'wb',
+
+            with open(
+                os.path.join(
+                    config.BASEDIR,
+                    'users_data',
+                    'cookies',
+                    f'{user_telegram_id}.pkl',
                 ),
-            )
+                'wb',
+            ) as cookies_file:
+                pickle.dump(cookies, cookies_file)
+
             await asyncio.sleep(1)
 
     @staticmethod
