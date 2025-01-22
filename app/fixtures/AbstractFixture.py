@@ -20,9 +20,7 @@ class AbstractFixture:
 
     def need_to_add_values(self) -> bool:
         items_count = self.model.query.count()
-        if items_count > 0:
-            return False
-        return True
+        return not items_count > 0
 
     def insert_data(self) -> bool:
         if not self.need_to_add_values():
