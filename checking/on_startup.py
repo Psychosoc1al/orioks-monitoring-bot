@@ -148,7 +148,9 @@ async def make_all_users_news_check(tries_counter: int = 0) -> list:
                 user_telegram_id=user_telegram_id
             )
         except FileNotFoundError:
-            logging.error('(COOKIES) FileNotFoundError: %s', user_telegram_id)
+            logging.exception(
+                '(COOKIES) FileNotFoundError: %s', user_telegram_id
+            )
             await UserHelper.increment_failed_request_count(user_telegram_id)
             continue
         user_session = ClientSessionHelper(
@@ -170,20 +172,19 @@ async def run_requests(tasks: list) -> None:
     try:
         await asyncio.gather(*tasks)
     except asyncio.TimeoutError:
-        logging.error('Сервер ОРИОКС не отвечает')
+        logging.exception('Сервер ОРИОКС не отвечает')
     except ClientResponseErrorParamsError as exception:
         if exception.status == 504:
-            logging.error(
-                'Вероятно, на сервере ОРИОКС проводятся технические работы: %s',
-                exception,
+            logging.exception(
+                'Вероятно, на сервере ОРИОКС проводятся технические работы'
             )
         else:
-            logging.error('Ошибка в запросах ОРИОКС!\n %s', exception)
+            logging.exception('Ошибка в запросах ОРИОКС!\n')
             CommonHelper.print_traceback(exception)
             await ClientResponseErrorParamsExceptionHelper.check(exception)
 
     except Exception as exception:
-        logging.error('Ошибка в запросах ОРИОКС!\n %s', exception)
+        logging.exception('Ошибка в запросах ОРИОКС!\n')
         CommonHelper.print_traceback(exception)
         await TelegramMessageHelper.message_to_admins(
             message=f'Ошибка в запросах ОРИОКС!\n{exception}'

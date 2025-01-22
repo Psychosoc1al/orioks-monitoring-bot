@@ -84,7 +84,7 @@ class OrioksAuthInputPasswordCommandHandler(AbstractCommandHandler):
                         sep='\n',
                     ),
                 )
-                logging.error('Сервер ОРИОКС не отвечает')
+                logging.exception('Сервер ОРИОКС не отвечает')
                 await OrioksAuthFailedMenu.show(
                     chat_id=message.chat.id,
                     telegram_user_id=message.from_user.id,

@@ -88,7 +88,6 @@ ignore = [
     "ANN202", # DELETE
     "PTH123", # DELETE
     "S311", # DELETE
-    "TRY400", # DELETE
     "C401", # DELETE
     "INP001", # DELETE
     "ANN201", # DELETE
