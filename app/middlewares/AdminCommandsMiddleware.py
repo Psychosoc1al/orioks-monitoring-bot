@@ -6,9 +6,7 @@ from config import config
 
 
 class AdminCommandsMiddleware(BaseMiddleware):
-    """
-    Middleware, разрешающее использовать команды Админов только пользователям из `config.TELEGRAM_ADMIN_IDS_LIST`
-    """
+    """Middleware, разрешающее использовать команды Админов только пользователям из `config.TELEGRAM_ADMIN_IDS_LIST`"""
 
     # pylint: disable=unused-argument
     async def on_process_message(

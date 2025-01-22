@@ -31,7 +31,7 @@ exclude = ["**/*.py?(i)", "app/migrations/versions"]
 [tool.ruff.lint]
 select = ['ALL']
 ignore = [
-    "Q000", # preserve string quotes
+    "BLE001", # allow "catch Exception"
     "D100", # don't require docstrings
     "D101", # don't require docstrings
     "D102", # don't require docstrings
@@ -40,19 +40,22 @@ ignore = [
     "D105", # don't require docstrings
     "D107", # don't require docstrings
     "D203", # don't require empty line before docstrings
-    "BLE001", # allow "catch Exception"
-    "S301", # allow pickle deserialization
-    "RUF001", # allow ambiguous cyrillic/latin letters 
-    "RUF003", # allow ambiguous cyrillic/latin letters 
-    "TRY003", # allow "long" error messages 
+    "D205", # allow multi-line docstrings to consist of one paragraph
+    "D212", # set multi-line docstrings to start at second line
+    "D400", # allow arbitrary first line ending of docstrings
+    "D415", # allow arbitrary first line ending of docstrings
+    "DTZ005", # allow datetime without timezone
     "EM101", # allow strings in error messages 
     "EM102", # allow f-strings in error messages 
-    "FIX", # allow TODOs
-    "TD", # allow TODOs
     "ERA001", # allow commented code
-    "DTZ005", # allow datetime without timezone
+    "FIX", # allow TODOs
+    "Q000", # preserve string quotes
+    "RUF001", # allow ambiguous cyrillic/latin letters 
+    "RUF003", # allow ambiguous cyrillic/latin letters 
+    "S301", # allow pickle deserialization
+    "TD", # allow TODOs
+    "TRY003", # allow "long" error messages 
 
-    "D200", # DELETE
     "SIM105", # DELETE
     "UP006", # DELETE
     "SIM910", # DELETE
@@ -77,9 +80,6 @@ ignore = [
     "ANN205", # DELETE
     "FBT001", # DELETE
     "ARG004", # DELETE
-    "D212", # DELETE
-    "D205", # DELETE
-    "D213", # DELETE
     "ANN003", # DELETE
     "ANN002", # DELETE
     "ARG002", # DELETE
@@ -97,8 +97,6 @@ ignore = [
     "B905", # DELETE
     "RET504", # DELETE
     "ANN202", # DELETE
-    "D415", # DELETE
-    "D400", # DELETE
     "TRY002", # DELETE
     "PTH123", # DELETE
     "S311", # DELETE
