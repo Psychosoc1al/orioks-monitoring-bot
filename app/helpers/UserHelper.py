@@ -1,5 +1,5 @@
 from app.exceptions import DatabaseException
-from app.models.users import UserStatus, UserNotifySettings
+from app.models.users import UserNotifySettings, UserStatus
 
 
 class UserHelper:

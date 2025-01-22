@@ -4,34 +4,34 @@ from aiogram import Dispatcher
 
 from config import config
 
-from .AbstractCommandHandler import AbstractCommandHandler
 from .AbstractCallbackHandler import AbstractCallbackHandler
+from .AbstractCommandHandler import AbstractCommandHandler
 
 __all__ = ['AbstractCommandHandler', 'AbstractCallbackHandler']
 
-from .errors import BaseErrorHandler
 from ..forms import OrioksAuthForm
+from .errors import BaseErrorHandler
 
 
 def register_handlers(dispatcher: Dispatcher) -> None:
+    from .callbacks import (
+        SettingsCallbackHandler,
+        UserAgreementCallbackHandler,
+    )
+    from .commands.admins import AdminStatisticsCommandHandler
     from .commands.general import (
-        StartCommandHandler,
-        ManualCommandHandler,
         FAQCommandHandler,
+        ManualCommandHandler,
+        StartCommandHandler,
     )
     from .commands.orioks import (
-        OrioksAuthStartCommandHandler,
-        OrioksLogoutCommandHandler,
         OrioksAuthCancelCommandHandler,
         OrioksAuthInputLoginCommandHandler,
         OrioksAuthInputPasswordCommandHandler,
+        OrioksAuthStartCommandHandler,
+        OrioksLogoutCommandHandler,
     )
     from .commands.settings import NotificationSettingsCommandHandler
-    from .commands.admins import AdminStatisticsCommandHandler
-    from .callbacks import (
-        UserAgreementCallbackHandler,
-        SettingsCallbackHandler,
-    )
 
     # General commands
     _register_message_handler(

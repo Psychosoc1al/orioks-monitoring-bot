@@ -1,19 +1,19 @@
 import json
+import logging
 import os
 from dataclasses import dataclass
 
 from aiohttp import ClientResponseError
 from bs4 import BeautifulSoup
-import logging
 
-from app.exceptions import OrioksParseDataException, FileCompareException
+from app.exceptions import FileCompareException, OrioksParseDataException
 from app.helpers import (
+    ClientSessionHelper,
     CommonHelper,
-    RequestHelper,
-    TelegramMessageHelper,
     JsonFileHelper,
     MarksPictureHelper,
-    ClientSessionHelper,
+    RequestHelper,
+    TelegramMessageHelper,
 )
 from checking.marks.compares import (
     file_compares,

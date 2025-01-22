@@ -2,7 +2,7 @@ from typing import Dict
 
 from app.models import session
 from app.models.admins import AdminStatistics
-from app.models.users import UserStatus, UserNotifySettings
+from app.models.users import UserNotifySettings, UserStatus
 
 
 class AdminHelper:

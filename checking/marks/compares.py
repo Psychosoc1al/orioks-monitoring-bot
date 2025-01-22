@@ -1,7 +1,9 @@
+from typing import NamedTuple
+
+import aiogram.utils.markdown as md
+
 from app.exceptions import FileCompareException
 from app.helpers import CommonHelper
-import aiogram.utils.markdown as md
-from typing import NamedTuple
 
 
 class DisciplineObject(NamedTuple):

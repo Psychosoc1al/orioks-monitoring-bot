@@ -1,8 +1,8 @@
 from aiogram.utils import markdown
 
 import app
-from app.keyboards.authorization import AuthorizationReplyKeyboard
 from app.helpers import UserHelper
+from app.keyboards.authorization import AuthorizationReplyKeyboard
 from app.menus.AbstractMenu import AbstractMenu
 
 

@@ -1,4 +1,3 @@
-from .OrioksAuthStartCommandHandler import OrioksAuthStartCommandHandler
 from .OrioksAuthCancelCommandHandler import OrioksAuthCancelCommandHandler
 from .OrioksAuthInputLoginCommandHandler import (
     OrioksAuthInputLoginCommandHandler,
@@ -6,6 +5,7 @@ from .OrioksAuthInputLoginCommandHandler import (
 from .OrioksAuthInputPasswordCommandHandler import (
     OrioksAuthInputPasswordCommandHandler,
 )
+from .OrioksAuthStartCommandHandler import OrioksAuthStartCommandHandler
 from .OrioksLogoutCommandHandler import OrioksLogoutCommandHandler
 
 __all__ = [

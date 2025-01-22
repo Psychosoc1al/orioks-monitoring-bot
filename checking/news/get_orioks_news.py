@@ -1,22 +1,22 @@
 import logging
 import os
-
 import re
+from typing import NamedTuple
+
+import aiogram.utils.markdown as md
 from aiohttp import ClientResponseError
 from bs4 import BeautifulSoup
 
 from app.exceptions import OrioksParseDataException
 from app.helpers import (
-    RequestHelper,
+    ClientSessionHelper,
     CommonHelper,
     JsonFileHelper,
-    TelegramMessageHelper,
     MarksPictureHelper,
-    ClientSessionHelper,
+    RequestHelper,
+    TelegramMessageHelper,
 )
 from config import config
-import aiogram.utils.markdown as md
-from typing import NamedTuple
 
 
 class NewsObject(NamedTuple):

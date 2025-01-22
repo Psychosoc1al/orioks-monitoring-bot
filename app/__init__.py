@@ -27,14 +27,14 @@ def initialize_assets():
 
 
 def _settings_before_start() -> None:
-    from app.handlers import register_handlers
     from app.fixtures import initialize_default_values
+    from app.handlers import register_handlers
+    from app.helpers import CommonHelper
     from app.middlewares import (
+        AdminCommandsMiddleware,
         UserAgreementMiddleware,
         UserOrioksAttemptsMiddleware,
-        AdminCommandsMiddleware,
     )
-    from app.helpers import CommonHelper
 
     register_handlers(dispatcher=dispatcher)
     initialize_assets()

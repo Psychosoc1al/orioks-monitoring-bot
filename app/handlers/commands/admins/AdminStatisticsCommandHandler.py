@@ -2,7 +2,6 @@ from aiogram import types
 from aiogram.utils import markdown
 
 from app.handlers import AbstractCommandHandler
-
 from app.helpers import AdminHelper
 from config import config
 

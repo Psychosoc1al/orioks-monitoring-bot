@@ -1,17 +1,14 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
 from alembic import context
+from sqlalchemy import engine_from_config, pool
 
 from app.models import DeclarativeModelBase
-from config import config as application_config
-
-# pylint: disable=unused-import
-from app.models.users import UserStatus, UserNotifySettings
 from app.models.admins import AdminStatistics
 
+# pylint: disable=unused-import
+from app.models.users import UserNotifySettings, UserStatus
+from config import config as application_config
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

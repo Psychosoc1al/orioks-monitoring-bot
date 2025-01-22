@@ -2,18 +2,16 @@ import asyncio
 import logging
 import os
 import pickle
+from datetime import datetime
 
 from aiohttp import ClientSession
 from bs4 import BeautifulSoup
-
-from datetime import datetime
 
 from app.exceptions import OrioksInvalidLoginCredentialsException
 from app.helpers import (
     CommonHelper,
     UserHelper,
 )
-
 from config import config
 
 _sem = asyncio.Semaphore(config.ORIOKS_LOGIN_QUEUE_SEMAPHORE_VALUE)

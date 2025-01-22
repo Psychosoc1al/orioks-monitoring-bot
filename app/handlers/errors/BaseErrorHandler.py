@@ -2,8 +2,8 @@ import logging
 
 from aiogram import types
 from aiogram.utils.exceptions import (
-    MessageNotModified,
     CantParseEntities,
+    MessageNotModified,
     TelegramAPIError,
 )
 

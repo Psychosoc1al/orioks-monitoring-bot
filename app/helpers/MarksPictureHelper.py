@@ -1,9 +1,10 @@
-import textwrap
 import os
-import qrcode as qrcode
-from PIL import Image, ImageDraw, ImageFont
 import pathlib
 import secrets
+import textwrap
+
+import qrcode as qrcode
+from PIL import Image, ImageDraw, ImageFont
 
 from app.helpers.AssetsHelper import assetsHelper
 from config import config

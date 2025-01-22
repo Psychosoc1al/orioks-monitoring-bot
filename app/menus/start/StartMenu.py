@@ -3,9 +3,8 @@ from aiogram.utils import markdown
 import app
 from app.helpers import UserHelper
 from app.keyboards.authorization import AuthorizationReplyKeyboard
-from app.menus.AbstractMenu import AbstractMenu
-
 from app.keyboards.notify_settings import NotifySettingsReplyKeyboard
+from app.menus.AbstractMenu import AbstractMenu
 
 
 class StartMenu(AbstractMenu):

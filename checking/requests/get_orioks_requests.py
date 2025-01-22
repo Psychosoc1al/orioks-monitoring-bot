@@ -1,20 +1,20 @@
 import logging
 import os
-
 import re
+
+import aiogram.utils.markdown as md
 from aiohttp import ClientResponseError
 from bs4 import BeautifulSoup
 
-from app.exceptions import OrioksParseDataException, FileCompareException
+from app.exceptions import FileCompareException, OrioksParseDataException
 from app.helpers import (
-    CommonHelper,
-    RequestHelper,
-    JsonFileHelper,
-    TelegramMessageHelper,
     ClientSessionHelper,
+    CommonHelper,
+    JsonFileHelper,
+    RequestHelper,
+    TelegramMessageHelper,
 )
 from config import config
-import aiogram.utils.markdown as md
 
 
 def _orioks_parse_requests(raw_html: str, section: str) -> dict:
