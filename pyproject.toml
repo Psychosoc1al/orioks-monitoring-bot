@@ -56,7 +56,6 @@ ignore = [
     "TD", # allow TODOs
     "TRY003", # allow "long" error messages 
 
-    "N816", # DELETE
     "TRY300", # DELETE
     "RUF013", # DELETE
     "PTH103", # DELETE
@@ -83,7 +82,6 @@ ignore = [
     "TID252", # DELETE
     "E402", # DELETE
     "E402", # DELETE
-    "N999", # DELETE
     "RUF022", # DELETE
     "C901", # DELETE
     "B905", # DELETE
@@ -110,6 +108,7 @@ ignore = [
     "COM812", # DELETE
     "ANN204", # DELETE
     "E501", # DELETE
+    "N999", # DELETE
 ]
 
 [tool.ruff.format]

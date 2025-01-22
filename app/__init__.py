@@ -20,10 +20,10 @@ def initialize_database() -> ScopedSession:
 
 
 def initialize_assets():
-    from app.helpers.AssetsHelper import assetsHelper
+    from app.helpers.AssetsHelper import assets_helper
 
     current_folder_path = os.path.dirname(os.path.abspath(__file__))
-    assetsHelper.initialize(f'{current_folder_path}/assets')
+    assets_helper.initialize(f'{current_folder_path}/assets')
 
 
 def _settings_before_start() -> None:

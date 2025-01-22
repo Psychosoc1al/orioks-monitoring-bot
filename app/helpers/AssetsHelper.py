@@ -12,4 +12,4 @@ class AssetsHelper:
         return f'{self.get_assets_path()}/{relative_path}'
 
 
-assetsHelper = AssetsHelper()
+assets_helper = AssetsHelper()

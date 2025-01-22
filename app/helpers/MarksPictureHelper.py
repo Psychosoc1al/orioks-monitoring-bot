@@ -6,13 +6,13 @@ import textwrap
 import qrcode as qrcode
 from PIL import Image, ImageDraw, ImageFont
 
-from app.helpers.AssetsHelper import assetsHelper
+from app.helpers.AssetsHelper import assets_helper
 from config import config
 
 
 class MarksPictureHelper:
     def __init__(self):
-        self._font_path = assetsHelper.make_full_path(
+        self._font_path = assets_helper.make_full_path(
             'fonts/PTSansCaption-Bold.ttf'
         )
         self._font_upper_size = 64
@@ -40,29 +40,31 @@ class MarksPictureHelper:
     def _get_image_by_grade(self, current_grade, max_grade):
         if current_grade == 0:
             self.image = Image.open(
-                assetsHelper.make_full_path('images/red.png')
+                assets_helper.make_full_path('images/red.png')
             )
         elif current_grade / max_grade < 0.5:
             self.image = Image.open(
-                assetsHelper.make_full_path('images/orange.png')
+                assets_helper.make_full_path('images/orange.png')
             )
         elif current_grade / max_grade < 0.7:
             self.image = Image.open(
-                assetsHelper.make_full_path('images/yellow.png')
+                assets_helper.make_full_path('images/yellow.png')
             )
         elif current_grade / max_grade < 0.85:
             self.image = Image.open(
-                assetsHelper.make_full_path('images/salt.png')
+                assets_helper.make_full_path('images/salt.png')
             )
         elif current_grade / max_grade >= 0.85:
             self.image = Image.open(
-                assetsHelper.make_full_path('images/green.png')
+                assets_helper.make_full_path('images/green.png')
             )
         self.draw_text = ImageDraw.Draw(self.image)
         self.image_weight, self.image_height = self.image.size
 
     def _get_news_image(self):
-        self.image = Image.open(assetsHelper.make_full_path('images/news.png'))
+        self.image = Image.open(
+            assets_helper.make_full_path('images/news.png')
+        )
         self.draw_text = ImageDraw.Draw(self.image)
         self.image_weight, self.image_height = self.image.size
 
