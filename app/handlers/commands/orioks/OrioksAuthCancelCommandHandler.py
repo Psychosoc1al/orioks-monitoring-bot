@@ -8,7 +8,7 @@ from app.keyboards.authorization import AuthorizationReplyKeyboard
 class OrioksAuthCancelCommandHandler(AbstractCommandHandler):
     @staticmethod
     async def process(message: types.Message, *args, **kwargs):
-        state = kwargs.get('state', None)
+        state = kwargs.get('state')
 
         current_state = await state.get_state()
         if current_state is None:

@@ -17,7 +17,7 @@ class OrioksAuthInputLoginCommandHandler(AbstractCommandHandler):
                 ),
             )
 
-        state = kwargs.get('state', None)
+        state = kwargs.get('state')
         async with state.proxy() as data:
             data['login'] = int(message.text)
 

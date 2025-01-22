@@ -21,7 +21,7 @@ from config import config
 class OrioksAuthInputPasswordCommandHandler(AbstractCommandHandler):
     @staticmethod
     async def process(message: types.Message, *args, **kwargs):
-        state = kwargs.get('state', None)
+        state = kwargs.get('state')
         UserHelper.increment_login_attempt_count(
             user_telegram_id=message.from_user.id
         )
